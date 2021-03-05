@@ -1,25 +1,56 @@
 package fr.gostyle.app.domain;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Coupon {
+@Entity
+public class Coupon implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "idCoupon")
-    private long id;
+    private Long idCoupon;
 
-    @Column(name = "TITRE", length = 45)
     private String Titre;
 
-    @Column(name = "REDUC")
     private int reduc;
 
-    @Column(name = "DATE_EXPI")
     private Date dateexpire;
 
 
+    public Coupon() {
+
+    }
+
+    public Coupon(Long idCoupon, String titre, int reduc, Date dateexpire) {
+        this.idCoupon = idCoupon;
+        Titre = titre;
+        this.reduc = reduc;
+        this.dateexpire = dateexpire;
+    }
+
+    public Long getIdCoupon() {
+        return idCoupon;
+    }
+
+    public String getTitre() {
+        return Titre;
+    }
+
+    public int getReduc() {
+        return reduc;
+    }
+
+    public Date getDateexpire() {
+        return dateexpire;
+    }
+
+    @Override
+    public String toString() {
+        return "Coupon{" +
+                "idCoupon=" + idCoupon +
+                ", Titre='" + Titre + '\'' +
+                ", reduc=" + reduc +
+                ", dateexpire=" + dateexpire +
+                '}';
+    }
 }

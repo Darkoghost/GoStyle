@@ -8,28 +8,31 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "idUser")
     private Long id;
 
-    @Column(name = "NOM")
     private String name;
 
-    @Column(name = "PRENOM")
     private String lastName;
 
-    @Column(name = "EMAIL")
     private String email;
 
-    @Column(name = "MDP")
     private String mdp;
 
-    @Column(name = "ADRESSE")
     private String adresse;
 
-    @Column(name = "ISADMIN");
     private boolean isAdmin;
 
     public User() {
+    }
+
+    public User(Long id, String name, String lastName, String email, String mdp, String adresse, boolean isAdmin) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.mdp = mdp;
+        this.adresse = adresse;
+        this.isAdmin = isAdmin;
     }
 
     public Long getId() {
@@ -58,5 +61,18 @@ public class User implements Serializable {
 
     public boolean isAdmin() {
         return isAdmin;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", mdp='" + mdp + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", isAdmin=" + isAdmin +
+                '}';
     }
 }
