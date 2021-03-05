@@ -18,6 +18,10 @@ public class User_couponkey implements Serializable {
         this.idCoupon = idCoupon;
     }
 
+    public User_couponkey() {
+
+    }
+
     public Long getIdUser() {
         return idUser;
     }

@@ -24,7 +24,7 @@ public class User implements Serializable {
     private boolean isAdmin;
 
     @OneToMany(mappedBy = "user")
-    Set<User_coupon> usercoupon;
+    Set<User_coupon> user_coupon;
 
     public User() {
     }

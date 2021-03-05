@@ -22,7 +22,7 @@ public class Coupon implements Serializable {
     private List<Produit> produitList;
 
     @OneToMany(mappedBy = "coupon")
-    Set<User_coupon> usercoupon;
+    Set<User_coupon> user_coupon;
 
     public Coupon() {
 
