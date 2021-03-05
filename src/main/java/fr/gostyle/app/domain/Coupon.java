@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Coupon implements Serializable {
@@ -20,6 +21,8 @@ public class Coupon implements Serializable {
     @OneToMany(mappedBy = "coupon")
     private List<Produit> produitList;
 
+    @OneToMany(mappedBy = "coupon")
+    Set<User_coupon> usercoupon;
 
     public Coupon() {
 

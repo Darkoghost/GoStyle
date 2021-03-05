@@ -2,6 +2,7 @@ package fr.gostyle.app.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 public class User implements Serializable {
@@ -21,6 +22,9 @@ public class User implements Serializable {
     private String adresse;
 
     private boolean isAdmin;
+
+    @OneToMany(mappedBy = "user")
+    Set<User_coupon> usercoupon;
 
     public User() {
     }
