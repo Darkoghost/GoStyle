@@ -9,8 +9,7 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "idUser")
-    private Long id;
+    private Long idUser;
 
     private String name;
 
@@ -30,8 +29,8 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(Long id, String name, String lastName, String email, String mdp, String adresse, boolean isAdmin) {
-        this.id = id;
+    public User(Long idUser, String name, String lastName, String email, String mdp, String adresse, boolean isAdmin) {
+        this.idUser = idUser;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
@@ -40,8 +39,8 @@ public class User implements Serializable {
         this.isAdmin = isAdmin;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdUser() {
+        return idUser;
     }
 
     public String getName() {
@@ -79,7 +78,7 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "idUser=" + idUser +
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
