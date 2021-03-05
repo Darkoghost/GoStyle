@@ -15,13 +15,18 @@ public class Produit implements Serializable {
 
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name = "idCoupon")
+    private Coupon coupon;
+
     public Produit() {
     }
 
-    public Produit(Long idProduit, String nom, String description) {
+    public Produit(Long idProduit, String nom, String description, Coupon coupon) {
         this.idProduit = idProduit;
         this.nom = nom;
         this.description = description;
+        this.coupon = coupon;
     }
 
 
@@ -37,12 +42,17 @@ public class Produit implements Serializable {
         return description;
     }
 
+    public Coupon getCoupon() {
+        return coupon;
+    }
+
     @Override
     public String toString() {
         return "Produit{" +
                 "idProduit=" + idProduit +
                 ", nom='" + nom + '\'' +
                 ", description='" + description + '\'' +
+                ", coupon=" + coupon +
                 '}';
     }
 }

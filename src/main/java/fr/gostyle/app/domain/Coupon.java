@@ -3,6 +3,7 @@ package fr.gostyle.app.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Coupon implements Serializable {
@@ -10,22 +11,26 @@ public class Coupon implements Serializable {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long idCoupon;
 
-    private String Titre;
+    private String titre;
 
     private int reduc;
 
     private Date dateexpire;
+
+    @OneToMany(mappedBy = "coupon")
+    private List<Produit> produitList;
 
 
     public Coupon() {
 
     }
 
-    public Coupon(Long idCoupon, String titre, int reduc, Date dateexpire) {
+    public Coupon(Long idCoupon, String titre, int reduc, Date dateexpire, List<Produit> produitList) {
         this.idCoupon = idCoupon;
-        Titre = titre;
+        this.titre = titre;
         this.reduc = reduc;
         this.dateexpire = dateexpire;
+        this.produitList = produitList;
     }
 
     public Long getIdCoupon() {
@@ -33,7 +38,7 @@ public class Coupon implements Serializable {
     }
 
     public String getTitre() {
-        return Titre;
+        return titre;
     }
 
     public int getReduc() {
@@ -44,13 +49,18 @@ public class Coupon implements Serializable {
         return dateexpire;
     }
 
+    public List<Produit> getProduitList() {
+        return produitList;
+    }
+
     @Override
     public String toString() {
         return "Coupon{" +
                 "idCoupon=" + idCoupon +
-                ", Titre='" + Titre + '\'' +
+                ", titre='" + titre + '\'' +
                 ", reduc=" + reduc +
                 ", dateexpire=" + dateexpire +
+                ", produitList=" + produitList +
                 '}';
     }
 }
