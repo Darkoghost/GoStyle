@@ -11,18 +11,58 @@ public class User_coupon {
 
     @ManyToOne
     @MapsId("idUser")
-    @JoinColumn(name = "idUser")
+    @JoinColumn(name = "id_user")
     User user;
 
     @ManyToOne
     @MapsId("idCoupon")
-    @JoinColumn(name = "idCoupon")
+    @JoinColumn(name = "id_coupon")
     Coupon coupon;
 
     @Column(name = "ISUSED")
     private boolean isUsed;
 
+    public User_coupon(User user, Coupon coupon, boolean isUsed) {
+        this.user = user;
+        this.coupon = coupon;
+        this.isUsed = isUsed;
+    }
 
+    public User_coupon() {
+
+    }
+
+    public User_couponkey getId() {
+        return id;
+    }
+
+    public void setId(User_couponkey id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Coupon getCoupon() {
+        return coupon;
+    }
+
+    public void setCoupon(Coupon coupon) {
+        this.coupon = coupon;
+    }
+
+    public boolean isUsed() {
+        return isUsed;
+    }
+
+    public void setUsed(boolean used) {
+        isUsed = used;
+    }
 }
 
 

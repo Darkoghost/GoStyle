@@ -9,6 +9,7 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idUser")
     private Long id;
 
     private String name;
@@ -24,7 +25,7 @@ public class User implements Serializable {
     private boolean isAdmin;
 
     @OneToMany(mappedBy = "user")
-    Set<User_coupon> user_coupon;
+    private Set<User_coupon> user_coupon;
 
     public User() {
     }
@@ -65,6 +66,14 @@ public class User implements Serializable {
 
     public boolean isAdmin() {
         return isAdmin;
+    }
+
+    public Set<User_coupon> getUser_coupon() {
+        return user_coupon;
+    }
+
+    public void setUser_coupon(Set<User_coupon> user_coupon) {
+        this.user_coupon = user_coupon;
     }
 
     @Override
