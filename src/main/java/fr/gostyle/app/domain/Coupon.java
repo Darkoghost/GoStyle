@@ -22,18 +22,19 @@ public class Coupon implements Serializable {
     private List<Produit> produitList;
 
     @OneToMany(mappedBy = "coupon")
-    private Set<User_coupon> user_coupon;
+    private Set<User_coupon> user_couponSet;
 
     public Coupon() {
 
     }
 
-    public Coupon(Long idCoupon, String titre, int reduc, Date dateexpire, List<Produit> produitList) {
+    public Coupon(Long idCoupon, String titre, int reduc, Date dateexpire, List<Produit> produitList, Set<User_coupon> user_couponSet) {
         this.idCoupon = idCoupon;
         this.titre = titre;
         this.reduc = reduc;
         this.dateexpire = dateexpire;
         this.produitList = produitList;
+        this.user_couponSet = user_couponSet;
     }
 
     public Long getIdCoupon() {
@@ -57,11 +58,11 @@ public class Coupon implements Serializable {
     }
 
     public Set<User_coupon> getUser_coupon() {
-        return user_coupon;
+        return user_couponSet;
     }
 
-    public void setUser_coupon(Set<User_coupon> user_coupon) {
-        this.user_coupon = user_coupon;
+    public void setUser_coupon(Set<User_coupon> user_couponSet) {
+        this.user_couponSet = user_couponSet;
     }
 
     @Override
@@ -72,6 +73,7 @@ public class Coupon implements Serializable {
                 ", reduc=" + reduc +
                 ", dateexpire=" + dateexpire +
                 ", produitList=" + produitList +
+                ", user_couponSet=" + user_couponSet +
                 '}';
     }
 }
