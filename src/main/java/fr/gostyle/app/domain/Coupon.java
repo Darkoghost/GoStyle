@@ -3,11 +3,10 @@ package fr.gostyle.app.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Coupon implements Serializable {
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long idCoupon;
@@ -18,50 +17,61 @@ public class Coupon implements Serializable {
 
     private Date dateexpire;
 
-    @OneToMany(mappedBy = "coupon")
-    private List<Produit> produitList;
+    @ManyToOne
+    private Produit produit;
 
-    @OneToMany(mappedBy = "coupon")
-    private Set<User_coupon> user_coupon;
+
 
     public Coupon() {
 
     }
 
-    public Coupon(Long idCoupon, String titre, int reduc, Date dateexpire, List<Produit> produitList) {
+    public Coupon(Long idCoupon, String titre, int reduc, Date dateexpire, Produit produit) {
         this.idCoupon = idCoupon;
         this.titre = titre;
         this.reduc = reduc;
         this.dateexpire = dateexpire;
-        this.produitList = produitList;
+        this.produit = produit;
     }
 
     public Long getIdCoupon() {
         return idCoupon;
     }
 
+    public void setIdCoupon(Long idCoupon) {
+        this.idCoupon = idCoupon;
+    }
+
     public String getTitre() {
         return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
 
     public int getReduc() {
         return reduc;
     }
 
+    public void setReduc(int reduc) {
+        this.reduc = reduc;
+    }
+
     public Date getDateexpire() {
         return dateexpire;
     }
 
-    public List<Produit> getProduitList() {
-        return produitList;
+    public void setDateexpire(Date dateexpire) {
+        this.dateexpire = dateexpire;
     }
 
-    public Set<User_coupon> getUser_coupon() {
-        return user_coupon;
+    public Produit getProduit() {
+        return produit;
     }
 
-    public void setUser_coupon(Set<User_coupon> user_coupon) {
-        this.user_coupon = user_coupon;
+    public void setProduit(Produit produit) {
+        this.produit = produit;
     }
 
     @Override
@@ -71,7 +81,7 @@ public class Coupon implements Serializable {
                 ", titre='" + titre + '\'' +
                 ", reduc=" + reduc +
                 ", dateexpire=" + dateexpire +
-                ", produitList=" + produitList +
+                ", produit=" + produit +
                 '}';
     }
 }
