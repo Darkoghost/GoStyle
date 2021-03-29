@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface User_couponRepository extends CrudRepository<User_coupon, Long> {
+public interface User_couponRepository extends CrudRepository<User_coupon, String> {
     User_coupon findByUser (User user);
     User_coupon findByCoupon (Coupon coupon);
 }

@@ -8,9 +8,10 @@ import java.util.Objects;
 @Embeddable
 public class User_couponkey implements Serializable {
 
-
+    @Column(name = "id_user")
     private String idUser;
 
+    @Column(name = "id_coupon")
     private String idCoupon;
 
     public User_couponkey(String idUser, String idCoupon) {
