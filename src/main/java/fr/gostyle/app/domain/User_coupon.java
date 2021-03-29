@@ -12,12 +12,12 @@ public class User_coupon {
     @ManyToOne
     @MapsId("idUser")
     @JoinColumn(name = "idUser")
-    User user;
+    private User user;
 
     @ManyToOne
     @MapsId("idCoupon")
     @JoinColumn(name = "idCoupon")
-    Coupon coupon;
+    private Coupon coupon;
 
     @Column(name = "ISUSED")
     private boolean isUsed;
