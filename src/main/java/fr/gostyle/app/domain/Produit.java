@@ -15,7 +15,7 @@ public class Produit implements Serializable {
 
     private String description;
 
-    @OneToMany
+    @OneToMany(mappedBy = "produit")
     private Set<Coupon> coupons;
 
     public Produit() {
