@@ -6,7 +6,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 public class Coupon implements Serializable {
@@ -25,20 +24,20 @@ public class Coupon implements Serializable {
     @ManyToOne
     private Produit produit;
 
-    @OneToMany(mappedBy = "coupon")
-    private Set<User_coupon> user_coupon;
+    @ManyToMany(mappedBy = "couponSet")
+    private Set<User> userSet;
 
     public Coupon() {
 
     }
 
-    public Coupon(String idCoupon, String titre, int reduc, Date dateexpire, Produit produit, Set<User_coupon> user_coupon) {
+    public Coupon(String idCoupon, String titre, int reduc, Date dateexpire, Produit produit, Set<User> userSet) {
         this.idCoupon = idCoupon;
         this.titre = titre;
         this.reduc = reduc;
         this.dateexpire = dateexpire;
         this.produit = produit;
-        this.user_coupon = user_coupon;
+        this.userSet = userSet;
     }
 
     public String getIdCoupon() {
@@ -65,12 +64,12 @@ public class Coupon implements Serializable {
         this.produit = produit;
     }
 
-    public Set<User_coupon> getUser_coupon() {
-        return user_coupon;
+    public Set<User> getUserSet() {
+        return userSet;
     }
 
-    public void setUser_coupon(Set<User_coupon> user_coupon) {
-        this.user_coupon = user_coupon;
+    public void setUserSet(Set<User> user_coupon) {
+        this.userSet = user_coupon;
     }
 
     @Override
@@ -81,7 +80,7 @@ public class Coupon implements Serializable {
                 ", reduc=" + reduc +
                 ", dateexpire=" + dateexpire +
                 ", produit=" + produit +
-                ", user_coupon=" + user_coupon +
+                ", user_coupon=" + userSet +
                 '}';
     }
 }

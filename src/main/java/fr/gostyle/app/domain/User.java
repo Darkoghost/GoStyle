@@ -5,7 +5,6 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 public class User implements Serializable {
@@ -17,6 +16,7 @@ public class User implements Serializable {
 
     private String name;
 
+    @JoinColumn(name = "last_name")
     private String lastName;
 
     private String email;
@@ -28,13 +28,16 @@ public class User implements Serializable {
     @JoinColumn(name = "is_admin")
     private boolean isAdmin;
 
-    @OneToMany(mappedBy = "user")
-    private Set<User_coupon> user_coupon;
+    @ManyToMany
+    @JoinTable(name = "user_coupon",
+            joinColumns = @JoinColumn(name = "id_user", referencedColumnName = "idUser"),
+            inverseJoinColumns = @JoinColumn(name = "id_coupon", referencedColumnName = "idCoupon"))
+    private Set<Coupon> couponSet;
 
     public User() {
     }
 
-    public User(String idUser, String name, String lastName, String email, String mdp, String adresse, boolean isAdmin, Set<User_coupon> user_coupon) {
+    public User(String idUser, String name, String lastName, String email, String mdp, String adresse, boolean isAdmin, Set<Coupon> couponSet) {
         this.idUser = idUser;
         this.name = name;
         this.lastName = lastName;
@@ -42,7 +45,7 @@ public class User implements Serializable {
         this.mdp = mdp;
         this.adresse = adresse;
         this.isAdmin = isAdmin;
-        this.user_coupon = user_coupon;
+        this.couponSet = couponSet;
     }
 
     public String getIdUser() {
@@ -73,12 +76,12 @@ public class User implements Serializable {
         return isAdmin;
     }
 
-    public Set<User_coupon> getUser_coupon() {
-        return user_coupon;
+    public Set<Coupon> getCouponSet() {
+        return couponSet;
     }
 
-    public void setUser_coupon(Set<User_coupon> user_coupon) {
-        this.user_coupon = user_coupon;
+    public void setCouponSet(Set<Coupon> user_coupon) {
+        this.couponSet = user_coupon;
     }
 
     @Override
@@ -91,7 +94,7 @@ public class User implements Serializable {
                 ", mdp='" + mdp + '\'' +
                 ", adresse='" + adresse + '\'' +
                 ", isAdmin=" + isAdmin +
-                ", user_coupon=" + user_coupon +
+                ", user_coupon=" + couponSet +
                 '}';
     }
 }
