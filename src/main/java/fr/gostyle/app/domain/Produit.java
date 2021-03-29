@@ -1,15 +1,19 @@
 package fr.gostyle.app.domain;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 public class Produit implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idProduit;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+    private String idProduit;
 
     private String nom;
 
@@ -21,18 +25,18 @@ public class Produit implements Serializable {
     public Produit() {
     }
 
-    public Produit(Long idProduit, String nom, String description, Set<Coupon> coupons) {
+    public Produit(String idProduit, String nom, String description, Set<Coupon> coupons) {
         this.idProduit = idProduit;
         this.nom = nom;
         this.description = description;
         this.coupons = coupons;
     }
 
-    public Long getIdProduit() {
+    public String getIdProduit() {
         return idProduit;
     }
 
-    public void setIdProduit(Long idProduit) {
+    public void setIdProduit(String idProduit) {
         this.idProduit = idProduit;
     }
 

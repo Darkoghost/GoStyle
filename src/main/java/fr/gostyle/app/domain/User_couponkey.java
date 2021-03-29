@@ -8,12 +8,13 @@ import java.util.Objects;
 @Embeddable
 public class User_couponkey implements Serializable {
 
+    @Column(name = "id_user")
+    private String idUser;
 
-    Long idUser;
+    @Column(name = "id_coupon")
+    private String idCoupon;
 
-    Long idCoupon;
-
-    public User_couponkey(Long idUser, Long idCoupon) {
+    public User_couponkey(String idUser, String idCoupon) {
         this.idUser = idUser;
         this.idCoupon = idCoupon;
     }
@@ -22,19 +23,19 @@ public class User_couponkey implements Serializable {
 
     }
 
-    public Long getIdUser() {
+    public String getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Long idUser) {
+    public void setIdUser(String idUser) {
         this.idUser = idUser;
     }
 
-    public Long getIdCoupon() {
+    public String getIdCoupon() {
         return idCoupon;
     }
 
-    public void setIdCoupon(Long idCoupon) {
+    public void setIdCoupon(String idCoupon) {
         this.idCoupon = idCoupon;
     }
 

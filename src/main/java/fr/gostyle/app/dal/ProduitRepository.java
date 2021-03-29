@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface ProduitRepository extends CrudRepository<Produit, Long> {
+public interface ProduitRepository extends CrudRepository<Produit, String> {
 
     List<Produit> findByNom(String nom);
 }
