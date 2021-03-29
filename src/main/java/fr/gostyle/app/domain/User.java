@@ -21,6 +21,7 @@ public class User implements Serializable {
 
     private String adresse;
 
+    @JoinColumn(name = "is_admin")
     private boolean isAdmin;
 
     @OneToMany(mappedBy = "user")

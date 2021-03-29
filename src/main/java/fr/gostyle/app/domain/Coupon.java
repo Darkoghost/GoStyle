@@ -3,7 +3,6 @@ package fr.gostyle.app.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
 import java.util.Set;
 
 @Entity
