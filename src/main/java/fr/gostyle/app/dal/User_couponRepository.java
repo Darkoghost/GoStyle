@@ -10,6 +10,5 @@ import java.util.List;
 public interface User_couponRepository extends CrudRepository<User_coupon, Long> {
     User_coupon findByUser (User user);
     User_coupon findByCoupon (Coupon coupon);
-    List<User_coupon> findByUserAndUsed (User user, boolean isUsed);
 }
 
