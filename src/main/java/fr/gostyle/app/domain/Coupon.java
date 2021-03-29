@@ -10,11 +10,11 @@ import java.util.UUID;
 
 @Entity
 public class Coupon implements Serializable {
+
     @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name="system-uuid",
-            strategy = "uuid")
-    private UUID idCoupon = UUID.randomUUID();
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+    private String idCoupon;
 
     private String titre;
 
@@ -32,7 +32,7 @@ public class Coupon implements Serializable {
 
     }
 
-    public Coupon(UUID idCoupon, String titre, int reduc, Date dateexpire, Produit produit, Set<User_coupon> user_coupon) {
+    public Coupon(String idCoupon, String titre, int reduc, Date dateexpire, Produit produit, Set<User_coupon> user_coupon) {
         this.idCoupon = idCoupon;
         this.titre = titre;
         this.reduc = reduc;
@@ -41,7 +41,7 @@ public class Coupon implements Serializable {
         this.user_coupon = user_coupon;
     }
 
-    public UUID getIdCoupon() {
+    public String getIdCoupon() {
         return idCoupon;
     }
 

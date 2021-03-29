@@ -1,5 +1,7 @@
 package fr.gostyle.app.domain;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
@@ -9,8 +11,9 @@ import java.util.UUID;
 public class User implements Serializable {
 
     @Id
-    @Column(name = "id_User", length = 16, unique = true, nullable = false)
-    private UUID idUser = UUID.randomUUID() ;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+    private String idUser;
 
     private String name;
 
@@ -31,7 +34,7 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(UUID idUser, String name, String lastName, String email, String mdp, String adresse, boolean isAdmin, Set<User_coupon> user_coupon) {
+    public User(String idUser, String name, String lastName, String email, String mdp, String adresse, boolean isAdmin, Set<User_coupon> user_coupon) {
         this.idUser = idUser;
         this.name = name;
         this.lastName = lastName;
@@ -42,7 +45,7 @@ public class User implements Serializable {
         this.user_coupon = user_coupon;
     }
 
-    public UUID getIdUser() {
+    public String getIdUser() {
         return idUser;
     }
 
