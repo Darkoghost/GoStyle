@@ -21,6 +21,8 @@ public class Coupon implements Serializable {
 
     private Date dateexpire;
 
+    private boolean isFree;
+
     @ManyToOne
     private Produit produit;
 
@@ -31,11 +33,12 @@ public class Coupon implements Serializable {
 
     }
 
-    public Coupon(String idCoupon, String titre, int reduc, Date dateexpire, Produit produit, Set<User> userSet) {
+    public Coupon(String idCoupon, String titre, int reduc, Date dateexpire, boolean isFree, Produit produit, Set<User> userSet) {
         this.idCoupon = idCoupon;
         this.titre = titre;
         this.reduc = reduc;
         this.dateexpire = dateexpire;
+        this.isFree = isFree;
         this.produit = produit;
         this.userSet = userSet;
     }
@@ -54,6 +57,14 @@ public class Coupon implements Serializable {
 
     public Date getDateexpire() {
         return dateexpire;
+    }
+
+    public boolean isFree() {
+        return isFree;
+    }
+
+    public void setFree(boolean free) {
+        isFree = free;
     }
 
     public Produit getProduit() {
@@ -75,12 +86,13 @@ public class Coupon implements Serializable {
     @Override
     public String toString() {
         return "Coupon{" +
-                "idCoupon=" + idCoupon +
+                "idCoupon='" + idCoupon + '\'' +
                 ", titre='" + titre + '\'' +
                 ", reduc=" + reduc +
                 ", dateexpire=" + dateexpire +
+                ", isFree=" + isFree +
                 ", produit=" + produit +
-                ", user_coupon=" + userSet +
+                ", userSet=" + userSet +
                 '}';
     }
 }
