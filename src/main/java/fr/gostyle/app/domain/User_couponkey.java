@@ -4,16 +4,17 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
 
 @Embeddable
 public class User_couponkey implements Serializable {
 
 
-    Long idUser;
+    UUID idUser;
 
-    Long idCoupon;
+    UUID idCoupon;
 
-    public User_couponkey(Long idUser, Long idCoupon) {
+    public User_couponkey(UUID idUser, UUID idCoupon) {
         this.idUser = idUser;
         this.idCoupon = idCoupon;
     }
@@ -22,19 +23,19 @@ public class User_couponkey implements Serializable {
 
     }
 
-    public Long getIdUser() {
+    public UUID getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Long idUser) {
+    public void setIdUser(UUID idUser) {
         this.idUser = idUser;
     }
 
-    public Long getIdCoupon() {
+    public UUID getIdCoupon() {
         return idCoupon;
     }
 
-    public void setIdCoupon(Long idCoupon) {
+    public void setIdCoupon(UUID idCoupon) {
         this.idCoupon = idCoupon;
     }
 

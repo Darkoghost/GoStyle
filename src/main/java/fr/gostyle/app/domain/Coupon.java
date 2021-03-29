@@ -1,15 +1,20 @@
 package fr.gostyle.app.domain;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 public class Coupon implements Serializable {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long idCoupon;
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name="system-uuid",
+            strategy = "uuid")
+    private UUID idCoupon = UUID.randomUUID();
 
     private String titre;
 
@@ -21,22 +26,22 @@ public class Coupon implements Serializable {
     private Produit produit;
 
     @OneToMany(mappedBy = "coupon")
-    private Set<User_coupon> user_couponSet;
+    private Set<User_coupon> user_coupon;
 
     public Coupon() {
 
     }
 
-    public Coupon(Long idCoupon, String titre, int reduc, Date dateexpire, Produit produit, Set<User_coupon> user_couponSet) {
+    public Coupon(UUID idCoupon, String titre, int reduc, Date dateexpire, Produit produit, Set<User_coupon> user_coupon) {
         this.idCoupon = idCoupon;
         this.titre = titre;
         this.reduc = reduc;
         this.dateexpire = dateexpire;
         this.produit = produit;
-        this.user_couponSet = user_couponSet;
+        this.user_coupon = user_coupon;
     }
 
-    public Long getIdCoupon() {
+    public UUID getIdCoupon() {
         return idCoupon;
     }
 
@@ -61,11 +66,11 @@ public class Coupon implements Serializable {
     }
 
     public Set<User_coupon> getUser_coupon() {
-        return user_couponSet;
+        return user_coupon;
     }
 
-    public void setUser_coupon(Set<User_coupon> user_couponSet) {
-        this.user_couponSet = user_couponSet;
+    public void setUser_coupon(Set<User_coupon> user_coupon) {
+        this.user_coupon = user_coupon;
     }
 
     @Override
@@ -76,7 +81,7 @@ public class Coupon implements Serializable {
                 ", reduc=" + reduc +
                 ", dateexpire=" + dateexpire +
                 ", produit=" + produit +
-                ", user_couponSet=" + user_couponSet +
+                ", user_coupon=" + user_coupon +
                 '}';
     }
 }

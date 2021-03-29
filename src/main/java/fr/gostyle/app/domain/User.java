@@ -3,13 +3,14 @@ package fr.gostyle.app.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 public class User implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idUser;
+    @Column(name = "id_User", length = 16, unique = true, nullable = false)
+    private UUID idUser = UUID.randomUUID() ;
 
     private String name;
 
@@ -25,12 +26,12 @@ public class User implements Serializable {
     private boolean isAdmin;
 
     @OneToMany(mappedBy = "user")
-    private Set<User_coupon> user_couponSet;
+    private Set<User_coupon> user_coupon;
 
     public User() {
     }
 
-    public User(Long idUser, String name, String lastName, String email, String mdp, String adresse, boolean isAdmin, Set<User_coupon> user_couponSet) {
+    public User(UUID idUser, String name, String lastName, String email, String mdp, String adresse, boolean isAdmin, Set<User_coupon> user_coupon) {
         this.idUser = idUser;
         this.name = name;
         this.lastName = lastName;
@@ -38,10 +39,10 @@ public class User implements Serializable {
         this.mdp = mdp;
         this.adresse = adresse;
         this.isAdmin = isAdmin;
-        this.user_couponSet = user_couponSet;
+        this.user_coupon = user_coupon;
     }
 
-    public Long getIdUser() {
+    public UUID getIdUser() {
         return idUser;
     }
 
@@ -70,11 +71,11 @@ public class User implements Serializable {
     }
 
     public Set<User_coupon> getUser_coupon() {
-        return user_couponSet;
+        return user_coupon;
     }
 
-    public void setUser_coupon(Set<User_coupon> user_couponSet) {
-        this.user_couponSet = user_couponSet;
+    public void setUser_coupon(Set<User_coupon> user_coupon) {
+        this.user_coupon = user_coupon;
     }
 
     @Override
@@ -87,7 +88,7 @@ public class User implements Serializable {
                 ", mdp='" + mdp + '\'' +
                 ", adresse='" + adresse + '\'' +
                 ", isAdmin=" + isAdmin +
-                ", user_couponSet=" + user_couponSet +
+                ", user_coupon=" + user_coupon +
                 '}';
     }
 }

@@ -3,13 +3,14 @@ package fr.gostyle.app.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 public class Produit implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idProduit;
+    private UUID idProduit = UUID.randomUUID();
 
     private String nom;
 
@@ -21,18 +22,18 @@ public class Produit implements Serializable {
     public Produit() {
     }
 
-    public Produit(Long idProduit, String nom, String description, Set<Coupon> coupons) {
+    public Produit(UUID idProduit, String nom, String description, Set<Coupon> coupons) {
         this.idProduit = idProduit;
         this.nom = nom;
         this.description = description;
         this.coupons = coupons;
     }
 
-    public Long getIdProduit() {
+    public UUID getIdProduit() {
         return idProduit;
     }
 
-    public void setIdProduit(Long idProduit) {
+    public void setIdProduit(UUID idProduit) {
         this.idProduit = idProduit;
     }
 
