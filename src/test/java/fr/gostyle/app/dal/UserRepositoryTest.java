@@ -28,7 +28,7 @@ class UserRepositoryTest {
     }
 
     @Test
-    void findByNomAndPrenom() {
+    void findByEmailAndMdp() {
         User = new User("UUIDici","Test", "george", "User.testgmail.com","1234","adresse", false, null);
 
         when(UserRepository.findByEmailAndMdp(User.getEmail(), User.getMdp())).thenReturn(User);
